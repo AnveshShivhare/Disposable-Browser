@@ -7,7 +7,7 @@ const copyBtn = document.getElementById('copyBtn')
 newSessionBtn.addEventListener('click', async () => {
   // Disable button while loading
   newSessionBtn.disabled = true
-  status.textContent = '⏳ Spinning up your browser...'
+  status.textContent = ' Spinning up your browser...'
   sessionInfo.style.display = 'none'
 
   try {
@@ -32,7 +32,7 @@ newSessionBtn.addEventListener('click', async () => {
       })
 
       // Show share info in popup
-      status.textContent = '✅ Session started!'
+      status.textContent = ' Session started!'
       shareUrl.textContent = data.sessionUrl
       sessionInfo.style.display = 'block'
     } else {
@@ -50,6 +50,6 @@ newSessionBtn.addEventListener('click', async () => {
 // Copy share link to clipboard
 copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(shareUrl.textContent)
-  copyBtn.textContent = '✅ Copied!'
-  setTimeout(() => { copyBtn.textContent = '📋 Copy Share Link' }, 2000)
+  copyBtn.textContent = ' Copied!'
+  setTimeout(() => { copyBtn.textContent = ' Copy Share Link' }, 2000)
 })

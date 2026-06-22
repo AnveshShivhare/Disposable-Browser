@@ -1,4 +1,4 @@
-# 🔒 Disposable Browser
+#  Disposable Browser
 
 A browser extension that spins up **isolated, containerized browser sessions** on demand — with shareable links and automatic cleanup.
 
@@ -73,7 +73,7 @@ A browser extension that spins up **isolated, containerized browser sessions** o
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/disposable-browser.git
+git clone https://github.com/AnveshShivhare/Disposable-Browser.git
 cd disposable-browser
 
 # Build the Docker image
@@ -97,8 +97,8 @@ pm2 save
 
 ### Usage
 
-1. Click the **🔒 Disposable Browser** icon in Chrome toolbar
-2. Click **🚀 New Session**
+1. Click the ** Disposable Browser** icon in Chrome toolbar
+2. Click ** New Session**
 3. An isolated browser opens in a new tab
 4. Share the session URL for collaborative browsing
 5. Close the tab → container is automatically destroyed
@@ -131,7 +131,7 @@ disposable-browser/
 - Containers have **512MB RAM limit** to prevent resource abuse
 - Sessions **auto-expire** after 30 minutes
 - Container is **force-removed** on session end — no data persists
-- noVNC is password-protected per session
+- noVNC is password-protected per session -- for now **"secret"**
 
 ---
 
