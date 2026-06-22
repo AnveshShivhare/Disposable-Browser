@@ -21,7 +21,15 @@ newSessionBtn.addEventListener('click', async () => {
 
     if (data.sessionUrl) {
       // Open the session in a new tab
-      chrome.tabs.create({ url: data.sessionUrl })
+      // Open session in new tab
+      chrome.tabs.create({ url: data.sessionUrl }, (tab) => {
+        // Tell background.js to track this tab
+        chrome.runtime.sendMessage({
+          type: 'SESSION_CREATED',
+          tabId: tab.id,
+          sessionId: data.sessionId
+        })
+      })
 
       // Show share info in popup
       status.textContent = '✅ Session started!'

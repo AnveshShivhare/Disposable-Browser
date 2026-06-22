@@ -7,10 +7,14 @@
     "default_popup": "popup.html",
     "default_title": "Disposable Browser"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "permissions": [
     "tabs"
   ],
   "host_permissions": [
-    "http://localhost:4000/*"
+    "http://localhost:4000/*",
+    "http://localhost/*"
   ]
 }

@@ -45,7 +45,7 @@ app.post('/api/session/create', async (req, res) => {
       expiresAt: Date.now() + 30 * 60 * 1000  // 30 min TTL
     }
 
-    console.log(`✅ Session ${sessionId} started on port ${port}`)
+    console.log(`Session ${sessionId} started on port ${port}`)
 
     res.json({
       sessionId,
@@ -54,7 +54,7 @@ app.post('/api/session/create', async (req, res) => {
     })
 
   } catch (err) {
-    console.error('❌ Error creating session:', err.message)
+    console.error('Error creating session:', err.message)
     res.status(500).json({ error: err.message })
   }
 })
@@ -77,12 +77,22 @@ app.delete('/api/session/:id', async (req, res) => {
 
   try {
     const container = docker.getContainer(session.containerId)
+    
     await container.stop()
+    console.log(`Session ${req.params.id} stopped`)
+
+    // Force remove the container after stopping
+    await container.remove({ force: true })
+    console.log(`Session ${req.params.id} container removed`)
+
     delete sessions[req.params.id]
-    console.log(`🛑 Session ${req.params.id} stopped`)
-    res.json({ message: 'Session stopped' })
+    res.json({ message: 'Session stopped and removed' })
+
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    // Container may already be gone — still clean up session
+    console.log(`Container already removed for session ${req.params.id}`)
+    delete sessions[req.params.id]
+    res.json({ message: 'Session cleaned up' })
   }
 })
 
@@ -93,5 +103,5 @@ app.get('/api/sessions', (req, res) => {
 
 // ─── START SERVER ─────────────────────────────────────────
 app.listen(4000, () => {
-  console.log('🚀 Backend running at http://localhost:4000')
+  console.log('Backend running at http://localhost:4000')
 })
