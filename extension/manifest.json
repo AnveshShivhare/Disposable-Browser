@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Disposable Browser",
+  "version": "1.0",
+  "description": "Spin up an isolated disposable browser session instantly",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Disposable Browser"
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://localhost:4000/*"
+  ]
+}
