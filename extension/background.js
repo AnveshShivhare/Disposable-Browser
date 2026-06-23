@@ -1,3 +1,10 @@
+// Keep service worker alive by setting an alarm every 20 seconds
+chrome.alarms.create('keepAlive', { periodInMinutes: 0.4 })
+chrome.alarms.onAlarm.addListener(() => {
+  // Just waking up the service worker
+  console.log('Service worker kept alive')
+})
+
 // Store tab → session mapping
 const tabSessions = {}
 
